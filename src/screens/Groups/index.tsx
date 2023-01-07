@@ -5,11 +5,12 @@ import { GroupCard } from '@components/GroupCard';
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Highlight';
 import { Container, Title } from './styles';
+import { ListEmpyty } from '@components/ListEmpty';
 
 
 export function Groups() {
 
-  const [groups, setGroups] = useState(['Galera do Sábado', 'Galera de Segunda', 'Galera do Itaú']);
+  const [groups, setGroups] = useState([]);
 
   return (
     <Container>
@@ -22,6 +23,10 @@ export function Groups() {
           <GroupCard
             title={item}
           />
+        )}
+        contentContainerStyle={groups.length === 0 && { flex: 1 }}
+        ListEmptyComponent={() => (
+          <ListEmpyty message="Parece que você ainda não tem turmas cadastradas. Adicione uma nova turma para começar a usar o aplicativo." />
         )}
       />
     </Container>
