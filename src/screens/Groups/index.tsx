@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, Title } from './styles';
 import { Header } from '@components/Header';
@@ -6,12 +7,17 @@ import { Highlight } from '@components/Highlight';
 import { FlatList } from 'react-native';
 import { GroupCard } from '@components/GroupCard';
 import { ListEmpyty } from '@components/ListEmpty';
-import { Button } from '@components/Button'
+import { Button } from '@components/Button';
 
 
 export function Groups() {
+  const [groups, setGroups] = useState([]);
 
-  const [groups, setGroups] = useState(['Grupo do Sábado', 'Grupo de Segunda']);
+  const navigation = useNavigation();
+
+  function actionNewGroup() {
+    navigation.navigate('new');
+  }
 
   return (
     <Container>
@@ -31,7 +37,7 @@ export function Groups() {
         )}
       />
 
-      <Button title="Criar nova turma" />
+      <Button title="Criar nova turma" onPress={actionNewGroup} />
 
     </Container>
   );

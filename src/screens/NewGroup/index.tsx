@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+
 import { Conainer, Content, Icon } from './styles';
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Highlight';
@@ -5,9 +7,15 @@ import { Button } from '@components/Button';
 import { Input } from '@components/Input';
 
 
-
-
 export function NewGroup() {
+
+    const navigation = useNavigation();
+
+    function actionCreateNewGroup() {
+        navigation.navigate('players', { group: 'Itaú' });
+    }
+
+
     return (
         <Conainer>
             <Header showBackButton />
@@ -15,7 +23,10 @@ export function NewGroup() {
                 <Icon />
                 <Highlight title='Nova turma' subtitle='Crie uma turma para adicionar pessoas' />
                 <Input placeholder='Nome da turma' />
-                <Button title='Criar' style={{ marginTop: 20 }} />
+                <Button title='Criar' style={{ marginTop: 20 }}
+                    onPress={actionCreateNewGroup}
+
+                />
             </Content>
         </Conainer>
     );
