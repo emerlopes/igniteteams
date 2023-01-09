@@ -5,6 +5,7 @@ import { Groups } from "@screens/Groups";
 import theme from '@theme/index'
 import { Loading } from "@components/Loading";
 import { NewGroup } from "@screens/NewGroup";
+import { Players } from "@screens/Players";
 
 
 
@@ -13,8 +14,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar  />
-      {fontsLoaded ? <NewGroup /> : <Loading />}
+      <StatusBar />
+      {fontsLoaded ? <Players /> : <Loading />}
     </ThemeProvider>
   );
 }
