@@ -22,7 +22,7 @@ export const Container = styled(TouchableOpacity) <FilteStylesProps>`
 `;
 
 export const Title = styled.Text`
-text-transform: uppercase;
+    text-transform: uppercase;
     ${({ theme }) => css`
         font-family: ${theme.FONT_FAMILY.BOLD};
         font-size: solid ${theme.FONT_SIZE.SM}px;
