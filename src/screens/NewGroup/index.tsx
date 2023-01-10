@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { setStorageGroup } from '@storage/group/setStorageGroup';
 
 import { Conainer, Content, Icon } from './styles';
 import { Header } from '@components/Header';
@@ -14,8 +15,13 @@ export function NewGroup() {
 
     const navigation = useNavigation();
 
-    function actionCreateNewGroup() {
-        navigation.navigate('players', { group });
+    async function actionCreateNewGroup() {
+        try {
+            await setStorageGroup(group);
+            navigation.navigate('players', { group });
+        } catch (e) {
+            console.log(e)
+        }
     }
 
 
