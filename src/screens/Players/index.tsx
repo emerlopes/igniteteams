@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRoute } from '@react-navigation/native'
 
+import { Alert } from 'react-native';
+
 import { Button } from "@components/Button";
 import { ButtonIcon } from "@components/ButtonIcon";
 import { Filter } from "@components/Filter";
@@ -18,6 +20,7 @@ type RouteParams = {
 }
 
 export function Players() {
+    const [newPlayerName, setNewPlayerName] = useState('');
     const [team, setTeam] = useState("Time A");
     const [players, setPlayers] = useState([]);
 
@@ -25,13 +28,24 @@ export function Players() {
     const { group } = route.params as RouteParams;
 
 
+    async function actionAddPlayer() {
+        if (newPlayerName.trim().length === 0) {
+            return Alert.alert("Nome do participante", "Informe o nome do participante.");
+        }
+
+        const newPlayer = {
+            name: newPlayerName,
+            team,
+        }
+    }
+
     return (
         <Container>
             <Header showBackButton />
             <Highlight title={group} subtitle="Adicione a galera e separe os times" />
             <Form>
-                <Input placeholder="Nome do participante" autoCorrect={false} />
-                <ButtonIcon icon="add" />
+                <Input onChangeText={setNewPlayerName} placeholder="Nome do participante" autoCorrect={false} />
+                <ButtonIcon icon="add" onPress={actionAddPlayer} />
             </Form>
 
             <HeaderList>
