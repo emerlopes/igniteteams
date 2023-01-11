@@ -20,6 +20,11 @@ export function Groups() {
     navigation.navigate('new');
   }
 
+  function actionOpenGroup(group: string) {
+    navigation.navigate('players', { group });
+
+  }
+
   async function fetchGroups() {
     try {
       const data = await getStorageGroups();
@@ -44,6 +49,7 @@ export function Groups() {
         renderItem={({ item }) => (
           <GroupCard
             title={item}
+            onPress={() => actionOpenGroup(item)}
           />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
