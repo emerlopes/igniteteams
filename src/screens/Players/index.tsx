@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { Alert, TextInput } from 'react-native';
 
@@ -20,6 +20,7 @@ import { getPlayersByGroup } from '@storage/player/getPlayersByGroup';
 import { getPlayersByGroupAndTeam } from '@storage/player/getPlayersByGroupAndTeam';
 import { PlayerStorageDTO } from '@storage/player/playerStorageDTO';
 import { removePlayerByGroup } from '@storage/player/removePlayerByGroup';
+import { removeGroupByName } from '@storage/group/removeGroupByName';
 
 type RouteParams = {
     group: string;
@@ -30,6 +31,7 @@ export function Players() {
     const [team, setTeam] = useState("Time A");
     const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 
+    const navigation = useNavigation();
     const route = useRoute();
     const { group } = route.params as RouteParams;
 
@@ -80,6 +82,27 @@ export function Players() {
             console.log(e)
             Alert.alert("Remover", "Não foi possível remover esta pessoa.")
         }
+    }
+
+    async function removeGroup() {
+        try {
+            await removeGroupByName(group);
+            navigation.navigate('groups');
+        } catch (e) {
+            console.log(e);
+            Alert.alert("Remover grupo", "Não foi possível remover o grupo.")
+        }
+    }
+
+    async function actionRemoveGroup() {
+        Alert.alert(
+            "Remover",
+            "Deseja remover o grupo?",
+            [
+                { text: "Não", style: "cancel" },
+                { text: "Sim", style: "destructive", onPress: () => removeGroup() },
+            ]
+        );
     }
 
     useEffect(() => {
@@ -139,7 +162,12 @@ export function Players() {
                 )}
                 showsVerticalScrollIndicator={false}
             />
-            <Button title="Remover turma" type="SECUNDARY" style={{ marginTop: 20 }} />
+            <Button
+                title="Remover turma"
+                type="SECUNDARY"
+                style={{ marginTop: 20 }}
+                onPress={actionRemoveGroup}
+            />
         </Container>
     );
 }
