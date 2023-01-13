@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { PlayerStorageDTO } from "./PlayerStorageDTO";
 import { AppError } from "@utils/AppError";
 import { PLAYER_COLLECTION } from "@storage/storageConfig";
-import { PlayerStorageDTO } from "./PlayerStorageDTO";
 
 export async function getPlayersByGroup(group: string) {
     try {
@@ -10,7 +10,7 @@ export async function getPlayersByGroup(group: string) {
 
         return players;
 
-    } catch (error) {
-        throw error;
+    } catch (e) {
+        throw e;
     }
 }

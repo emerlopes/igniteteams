@@ -12,12 +12,8 @@ export async function setPlayerByGroup(newPlayer: PlayerStorageDTO, group: strin
         if (playerAlreadyExists.length > 0) {
             throw new AppError("Essa pessoa já está em um time");
         }
-
         const storage = JSON.stringify([...storedPlayers, newPlayer]);
-
         await AsyncStorage.setItem(`${PLAYER_COLLECTION}-${group}`, storage);
-
-
     } catch (e) {
         throw (e);
     }
