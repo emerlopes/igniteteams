@@ -18,7 +18,8 @@ import { AppError } from '@utils/AppError';
 import { setPlayerByGroup } from '@storage/player/setPlayerByGroup';
 import { getPlayersByGroup } from '@storage/player/getPlayersByGroup';
 import { getPlayersByGroupAndTeam } from '@storage/player/getPlayersByGroupAndTeam';
-import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
+import { PlayerStorageDTO } from '@storage/player/playerStorageDTO';
+import { removePlayerByGroup } from '@storage/player/removePlayerByGroup';
 
 type RouteParams = {
     group: string;
@@ -41,7 +42,7 @@ export function Players() {
         }
 
         const newPlayer = {
-            name: newPlayerName,
+            name: newPlayerName.trim(),
             team,
         }
 
@@ -68,6 +69,16 @@ export function Players() {
         } catch (e) {
             console.log(e);
             Alert.alert("Pessoas", "Não foi possível carregar as pessoas por time")
+        }
+    }
+
+    async function actionRemovePlayer(playerName: string) {
+        try {
+            await removePlayerByGroup(playerName, group);
+            fetchPlayersByTeam();
+        } catch (e) {
+            console.log(e)
+            Alert.alert("Remover", "Não foi possível remover esta pessoa.")
         }
     }
 
@@ -114,7 +125,7 @@ export function Players() {
                 renderItem={({ item }) => (
                     <PlayerCard
                         name={item.name}
-                        onRemove={() => setPlayers(players.filter(player => player !== item))}
+                        onRemove={() => actionRemovePlayer(item.name)}
                     />
                 )}
                 contentContainerStyle={
