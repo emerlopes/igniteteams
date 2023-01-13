@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { PlayerStorageDTO } from "./PlayerStorageDTO";
+import { PlayerStorageDTO } from "./playerStorageDTO";
 import { AppError } from "@utils/AppError";
 import { PLAYER_COLLECTION } from "@storage/storageConfig";
 
