@@ -14,7 +14,7 @@ export default {
         GRAY_400: '#323238',
         GRAY_500: '#29292E',
         GRAY_600: '#202024',
-        GRAY_700: '#121214',
+        GRAY_700: '#121214'
 
     },
     FONT_FAMILY: {
