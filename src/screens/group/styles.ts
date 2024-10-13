@@ -11,11 +11,3 @@ export const Title = styled.Text`
     font-size: 32px;
 `;
 
-export const GroupName = styled.TextInput`
-    flex: 1;
-    background-color: aliceblue;
-    height: 52px;
-    font-size: 24px;
-    padding: 8px;
-`;
-
