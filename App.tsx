@@ -3,7 +3,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 
 import { Group } from '@/screens/group';
 import theme from '@/theme';
-import { ActivityIndicator, ActivityIndicatorBase } from 'react-native';
+import { ActivityIndicator, StatusBar } from 'react-native';
 
 
 
@@ -13,6 +13,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
         {fontsLoaded ? <Group /> : <ActivityIndicator />}
       </ThemeProvider>
     </>
