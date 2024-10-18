@@ -1,8 +1,9 @@
 import { GroupCard } from '@/components/GroupCard';
 import { Header } from '@/components/header';
 import { Highlight } from '@/components/highlight';
+import { ListEmpty } from '@/components/listEmpty';
 import { Group, mockGroups } from '@/helper/groups';
-import { Container } from '@/screens/group/styles';
+import { Container } from '@/screens/groups/styles';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 
@@ -13,7 +14,7 @@ type Props = {
 
 export function Groups() {
 
-  const [groups, setGroups] = useState<Group[]>(mockGroups)
+  const [groups, setGroups] = useState<Group[]>([])
 
   return (
     <Container>
@@ -23,7 +24,10 @@ export function Groups() {
       <FlatList
         data={groups}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <GroupCard title={item.title} />}
+        renderItem={({ item }) => <GroupCard title={item.title}
+        />} 
+        contentContainerStyle={groups?.length === 0 && {flex: 1}}
+        ListEmptyComponent={() => <ListEmpty message="Crie a sua turma e comece hoje"/>}
       />
     </Container>
   );

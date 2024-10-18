@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 
-import { Groups } from '@/screens/group';
+import { Groups } from '@/screens/groups';
 import theme from '@/theme';
 import { Loading } from '@/components/loading';
 
