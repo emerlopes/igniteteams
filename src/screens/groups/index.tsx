@@ -1,3 +1,4 @@
+import { Button } from '@/components/button';
 import { GroupCard } from '@/components/GroupCard';
 import { Header } from '@/components/header';
 import { Highlight } from '@/components/highlight';
@@ -25,10 +26,12 @@ export function Groups() {
         data={groups}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <GroupCard title={item.title}
-        />} 
-        contentContainerStyle={groups?.length === 0 && {flex: 1}}
-        ListEmptyComponent={() => <ListEmpty message="Crie a sua turma e comece hoje"/>}
+        />}
+        contentContainerStyle={groups?.length === 0 && { flex: 1 }}
+        ListEmptyComponent={() => <ListEmpty message="Crie a sua turma e comece hoje" />}
       />
+
+      <Button title="Criar nova turma" />
     </Container>
   );
 }
