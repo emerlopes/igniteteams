@@ -6,6 +6,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { Groups } from '@/screens/groups';
 import theme from '@/theme';
 import { Loading } from '@/components/loading';
+import { NewGroup } from '@/screens/newgroup';
 
 
 
@@ -20,7 +21,8 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <Groups /> : <Loading />}
+        <NewGroup />
+        {/* {fontsLoaded ? <Groups /> : <Loading />} */}
       </ThemeProvider>
     </>
   );

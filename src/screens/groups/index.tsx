@@ -15,7 +15,7 @@ type Props = {
 
 export function Groups() {
 
-  const [groups, setGroups] = useState<Group[]>([])
+  const [groups, setGroups] = useState<Group[]>(mockGroups)
 
   return (
     <Container>
