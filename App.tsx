@@ -7,6 +7,7 @@ import { Groups } from '@/screens/groups';
 import theme from '@/theme';
 import { Loading } from '@/components/loading';
 import { NewGroup } from '@/screens/newgroup';
+import { Players } from '@/screens/players';
 
 
 
@@ -21,8 +22,10 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        <NewGroup />
+
+        {/* {fontsLoaded ? <NewGroup /> : <NewGroup />} */}
         {/* {fontsLoaded ? <Groups /> : <Loading />} */}
+        {fontsLoaded ? <Players /> : <Players />}
       </ThemeProvider>
     </>
   );
